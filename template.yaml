@@ -1,0 +1,28 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: pull-request
+  title: Pull Request Action template
+  description: scaffolder v1beta3 template demo publishing to PR on existing git repository
+spec:
+  owner: backstage/techdocs-core
+  type: service
+
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+  steps:
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      input:
+        targetPath: ./community
+        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
